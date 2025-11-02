@@ -1,18 +1,14 @@
 import json
 import os
 import requests
-import socket
 
 
 def get_ip() -> str:
     """
     get the ip address of whoever executes the script
     """
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(("8.8.8.8", 80))
-    ip_address = s.getsockname()[0]
-    print(s.getsockname()[0])
-    s.close()
+    ip_address = requests.get('https://checkip.amazonaws.com').text.strip()
+    print(ip_address)
     return str(ip_address)
 
 
